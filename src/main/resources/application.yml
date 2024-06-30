@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: QuizBack
+  data:
+      mongodb:
+        uri: mongodb://localhost:27017/quiz
+
+############################# JWT Configs    ######################################
+quiz:
+  security:
+    rsa:
+      private-key: classpath:certs/private.pem
+      public-key: classpath:certs/public.pem
+    jwt:
+      token:
+        expiration: 43_200
+      access-token:
+        expiration: 43_200
+      refresh-token:
+        expiration: 43_200
+      claims:
+        names:
+          authorities: scope
+          user-email: mail
+          user-id: uid
+          user-permissions: permissions
+        values:
+          issuer: QUIZ-BACK
