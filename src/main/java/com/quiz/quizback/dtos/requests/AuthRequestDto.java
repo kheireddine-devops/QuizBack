@@ -6,7 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
-public class AuthRequest {
+public class AuthRequestDto {
     private String login;
     private String password;
 }
