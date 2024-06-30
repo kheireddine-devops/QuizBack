@@ -72,4 +72,10 @@ public class UserService implements IUserService {
         Page<User> usersPage = this.userRepository.findAll(pageable);
         return usersPage.map(this.userMapper::toDto);
     }
+
+    @Override
+    public UserResponseDto getUserById(String userId) {
+        Optional<User> userOptional = this.userRepository.findById(userId);
+        return userOptional.map(this.userMapper::toDto).orElse(null);
+    }
 }
