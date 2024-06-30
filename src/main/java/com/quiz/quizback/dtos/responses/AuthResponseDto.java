@@ -6,6 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @NoArgsConstructor @ToString
-public class AuthResponse {
+public class AuthResponseDto {
     private String token;
 }

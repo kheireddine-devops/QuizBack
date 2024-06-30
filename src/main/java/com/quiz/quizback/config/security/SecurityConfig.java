@@ -45,10 +45,7 @@ public class SecurityConfig {
     @Primary
     public UserDetailsService userDetailsService() {
         return login -> userRepository.findByEmail(login)
-                .orElseThrow(() -> {
-                    System.out.println("mmmm");
-                    throw new SecurityException("");
-                });
+                .orElseThrow(() -> new SecurityException("Login or password incorrect"));
     }
 
     @Bean
@@ -70,7 +67,7 @@ public class SecurityConfig {
                 }))
                 .authorizeHttpRequests(authorization -> {
                      authorization
-                             .requestMatchers("/auth").permitAll()
+                             .requestMatchers("/auth","/register").permitAll()
                              .anyRequest().authenticated();
                 })
                 .build();
