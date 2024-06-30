@@ -10,10 +10,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import static org.springframework.data.web.config.EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO;
 
 @SpringBootApplication
 @EnableConfigurationProperties({QuizConfig.class})
+@EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO)
 public class QuizBackApplication implements CommandLineRunner {
     @Autowired
     private IUserRepository userRepository;
@@ -31,7 +35,7 @@ public class QuizBackApplication implements CommandLineRunner {
         kheireddineAdmin.setLastname("Mechergui");
         kheireddineAdmin.setEmail("kheireddine.dev.ops@gmail.com");
         kheireddineAdmin.setGender(GenderEnum.MALE);
-        kheireddineAdmin.setFirstname(passwordEncoder.encode("admin"));
+        kheireddineAdmin.setPassword(passwordEncoder.encode("admin"));
         kheireddineAdmin.setRole(RoleEnum.ROLE_ADMIN);
 
         User kheireddineUser = new User();
@@ -39,7 +43,7 @@ public class QuizBackApplication implements CommandLineRunner {
         kheireddineUser.setLastname("Mechergui");
         kheireddineUser.setEmail("kheireddine.dev.ops@gmail.fr");
         kheireddineUser.setGender(GenderEnum.MALE);
-        kheireddineUser.setFirstname(passwordEncoder.encode("user"));
+        kheireddineUser.setPassword(passwordEncoder.encode("user"));
         kheireddineUser.setRole(RoleEnum.ROLE_USER);
 
         User sirineAdmin = new User();
@@ -47,7 +51,7 @@ public class QuizBackApplication implements CommandLineRunner {
         sirineAdmin.setLastname("Srairi");
         sirineAdmin.setEmail("sirine.srairi10@gmail.com");
         sirineAdmin.setGender(GenderEnum.FEMALE);
-        sirineAdmin.setFirstname(passwordEncoder.encode("admin"));
+        sirineAdmin.setPassword(passwordEncoder.encode("admin"));
         sirineAdmin.setRole(RoleEnum.ROLE_ADMIN);
 
         User sirineUser = new User();
@@ -55,7 +59,7 @@ public class QuizBackApplication implements CommandLineRunner {
         sirineUser.setLastname("Srairi");
         sirineUser.setEmail("sirine.srairi10@gmail.fr");
         sirineUser.setGender(GenderEnum.FEMALE);
-        sirineUser.setFirstname(passwordEncoder.encode("user"));
+        sirineUser.setPassword(passwordEncoder.encode("user"));
         sirineUser.setRole(RoleEnum.ROLE_USER);
 
         userRepository.deleteAll();

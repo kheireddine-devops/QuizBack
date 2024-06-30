@@ -11,8 +11,9 @@ import com.quiz.quizback.dtos.responses.AuthResponseDto;
 import com.quiz.quizback.dtos.responses.UserResponseDto;
 import com.quiz.quizback.repositories.IUserRepository;
 import com.quiz.quizback.services.specs.IUserService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,9 +38,12 @@ public class UserService implements IUserService {
     @Override
     public AuthResponseDto auth(AuthRequestDto requestDto) {
         if (requestDto.getLogin() == null || requestDto.getPassword() == null) {
-            throw new RuntimeException("Missing login or password");
+            throw new CustomException("Missing login or password");
         } else {
             final UserDetails userDetails = userDetailsService.loadUserByUsername(requestDto.getLogin());
+            if (!passwordEncoder.matches(requestDto.getPassword(), userDetails.getPassword())) {
+                throw new CustomException("Login or password incorrect");
+            }
             AuthResponseDto authResponse = new AuthResponseDto();
             final String jwtAccessToken = jwtTokenUtil.generateAccessToken(userDetails);
             authResponse.setToken(jwtAccessToken);
@@ -61,5 +65,11 @@ public class UserService implements IUserService {
 
         user = this.userRepository.save(user);
         return this.userMapper.toDto(user);
+    }
+
+    @Override
+    public Page<UserResponseDto> getAllUsers(Pageable pageable) {
+        Page<User> usersPage = this.userRepository.findAll(pageable);
+        return usersPage.map(this.userMapper::toDto);
     }
 }
