@@ -22,4 +22,7 @@ public interface IUserController {
 
     @GetMapping("/users/all")
     ResponseEntity<Page<UserResponseDto>> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size);
+
+    @GetMapping("/users/{userId}")
+    ResponseEntity<UserResponseDto> getUserById(@PathVariable("userId") String userId);
 }

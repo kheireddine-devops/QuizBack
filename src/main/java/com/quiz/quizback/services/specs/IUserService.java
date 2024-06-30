@@ -16,4 +16,5 @@ public interface IUserService {
     Optional<User> getByEmail(String email);
     UserResponseDto register(UserRequestDto requestDto);
     Page<UserResponseDto> getAllUsers(Pageable pageable);
+    UserResponseDto getUserById(String userId);
 }

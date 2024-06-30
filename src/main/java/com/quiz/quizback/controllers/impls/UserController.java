@@ -35,4 +35,10 @@ public class UserController implements IUserController {
         Pageable pageable = PageRequest.of(page, size);
         return new ResponseEntity<>(this.userService.getAllUsers(pageable), HttpStatus.OK);
     }
+
+    @Override
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserResponseDto> getUserById(String userId) {
+        return new ResponseEntity<>(this.userService.getUserById(userId), HttpStatus.OK);
+    }
 }
