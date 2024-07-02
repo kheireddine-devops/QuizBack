@@ -7,7 +7,9 @@ import com.quiz.quizback.services.specs.IResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequiredArgsConstructor
 public class ResultController implements IResultController {
     private final IResultService resultService;

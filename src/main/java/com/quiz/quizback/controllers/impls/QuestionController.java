@@ -7,6 +7,9 @@ import com.quiz.quizback.services.specs.IQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 @RequiredArgsConstructor
 public class QuestionController implements IQuestionController {
   private final IQuestionService questionService;
