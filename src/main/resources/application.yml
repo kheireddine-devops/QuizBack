@@ -8,7 +8,8 @@ spring:
     name: QuizBack
   data:
       mongodb:
-        uri: mongodb://localhost:27017/quiz
+        database: Cluster0
+        uri: mongodb+srv://cyrinesrairi:auzMumbk2Hnym0qy@cluster0.1ph2cyv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 ############################# JWT Configs    ######################################
 quiz:
