@@ -1,16 +1,15 @@
 package com.quiz.quizback.controllers.impls;
 
 import com.quiz.quizback.config.exceptions.CustomException;
-import com.quiz.quizback.controllers.specs.ICategoryController;
 import com.quiz.quizback.controllers.specs.IQuestionController;
 import com.quiz.quizback.domain.entities.Question;
-import com.quiz.quizback.services.impls.QuestionService;
+import com.quiz.quizback.services.specs.IQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 @RequiredArgsConstructor
 public class QuestionController implements IQuestionController {
-  private final QuestionService questionService;
+  private final IQuestionService questionService;
     @Override
     public ResponseEntity<Void> addQuestion(Question question) {
         try {

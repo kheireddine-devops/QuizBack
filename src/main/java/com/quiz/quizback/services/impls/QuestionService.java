@@ -4,6 +4,7 @@ import com.quiz.quizback.config.exceptions.CustomException;
 import com.quiz.quizback.domain.entities.Category;
 import com.quiz.quizback.domain.entities.Question;
 import com.quiz.quizback.repositories.ICategoryRepository;
+import com.quiz.quizback.services.specs.IQuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class QuestionService {
+public class QuestionService implements IQuestionService {
     private final ICategoryRepository categoryRepository;
+    @Override
     public void addQuestion(Question question){
         Optional<Category> optionalCategory=categoryRepository.findById(question.getIdCategory());
         if(optionalCategory.isEmpty())
@@ -22,6 +24,7 @@ public class QuestionService {
         optionalCategory.get().getQuiz().add(question);
         categoryRepository.save(optionalCategory.get());
     }
+    @Override
     public void updateQuestion(String questionId, Question question){
         Optional<Category> optionalCategory=categoryRepository.findById(question.getIdCategory());
         if(optionalCategory.isEmpty())
@@ -50,6 +53,7 @@ public class QuestionService {
 
         categoryRepository.save(optionalCategory.get());
     }
+    @Override
     public void deleteQuestion(String categoryId,  String questionId){
         Optional<Category> optionalCategory=categoryRepository.findById(categoryId);
         if(optionalCategory.isEmpty())

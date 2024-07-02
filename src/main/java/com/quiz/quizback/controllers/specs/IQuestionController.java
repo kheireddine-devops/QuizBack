@@ -1,12 +1,10 @@
 package com.quiz.quizback.controllers.specs;
 
-import com.quiz.quizback.domain.entities.Category;
 import com.quiz.quizback.domain.entities.Question;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RequestMapping("/question")
 public interface IQuestionController {
