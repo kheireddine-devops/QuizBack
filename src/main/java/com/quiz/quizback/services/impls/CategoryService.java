@@ -15,11 +15,11 @@ import java.util.Optional;
 public class CategoryService implements ICategoryService {
     private final ICategoryRepository categoryRepository;
     @Override
-    public Category updateCategory(String id, Category category) throws CustomException {
-        Optional<Category> optionalCategory=categoryRepository.findById(id);
+    public Category updateCategory(String categoryId, Category category) throws CustomException {
+        Optional<Category> optionalCategory=categoryRepository.findById(categoryId);
         if(optionalCategory.isEmpty())
         {
-            throw new CustomException("pas de category avec cet Id");
+            throw new CustomException("Category not found with ID: " + categoryId);
 
         }
         Category categoryUpdate =optionalCategory.get();

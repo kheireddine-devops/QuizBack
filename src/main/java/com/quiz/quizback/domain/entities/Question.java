@@ -16,6 +16,7 @@ import java.util.List;
 public class Question {
     @Id
     String id;
+    String idCategory;
     String description;
     byte score;
     List<Option> options;
