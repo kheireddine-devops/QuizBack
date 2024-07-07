@@ -9,6 +9,7 @@ spring:
   data:
       mongodb:
         database: Cluster0
+#        uri: mongodb://localhost:27017/quiz
         uri: mongodb+srv://cyrinesrairi:auzMumbk2Hnym0qy@cluster0.1ph2cyv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 
 ############################# JWT Configs    ######################################
@@ -32,3 +33,5 @@ quiz:
           user-permissions: permissions
         values:
           issuer: QUIZ-BACK
+  allow:
+    origin: http://localhost:4200

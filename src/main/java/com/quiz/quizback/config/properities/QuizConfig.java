@@ -4,9 +4,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
+import java.util.ArrayList;
+import java.util.List;
 
 @ConfigurationProperties(prefix = "quiz")
-public record QuizConfig(Security security) {
+public record QuizConfig(Security security,Allow allow) {
     record Security(Rsa rsa,Jwt jwt) {
         record Rsa(RSAPublicKey publicKey, RSAPrivateKey privateKey) {}
         record Jwt(Token token,AccessToken accessToken, RefreshToken refreshToken,Claims claims) {
@@ -26,4 +28,5 @@ public record QuizConfig(Security security) {
             }
         }
     }
+    record Allow(List<String> origin) {}
 }
