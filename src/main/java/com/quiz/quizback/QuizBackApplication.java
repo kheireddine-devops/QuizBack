@@ -1,10 +1,13 @@
 package com.quiz.quizback;
 
 import com.quiz.quizback.config.properities.QuizConfig;
+import com.quiz.quizback.domain.entities.Category;
 import com.quiz.quizback.domain.entities.User;
 import com.quiz.quizback.domain.enums.GenderEnum;
 import com.quiz.quizback.domain.enums.RoleEnum;
+import com.quiz.quizback.repositories.ICategoryRepository;
 import com.quiz.quizback.repositories.IUserRepository;
+import com.quiz.quizback.services.specs.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +26,8 @@ public class QuizBackApplication implements CommandLineRunner {
     private IUserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private ICategoryRepository categoryRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(QuizBackApplication.class, args);
@@ -67,5 +72,23 @@ public class QuizBackApplication implements CommandLineRunner {
         this.userRepository.save(kheireddineUser);
         this.userRepository.save(sirineAdmin);
         this.userRepository.save(sirineUser);
+
+
+        categoryRepository.deleteAll();
+        Category webCategory = new Category();
+        webCategory.setName("Web");
+        webCategory.setDescription("Testez vos connaissances en développement web avec notre quiz interactif !\nCe test couvre des sujets clés tels que HTML, CSS, JavaScript, et les frameworks populaires.\nQue vous soyez débutant ou expert, découvrez où vous en êtes et améliorez vos compétences en répondant à des questions variées et stimulantes");
+
+        Category englishCategory = new Category();
+        englishCategory.setName("English");
+        englishCategory.setDescription("Évaluez vos compétences en anglais avec notre quiz interactif en ligne !\nCe test couvre la grammaire, le vocabulaire, la compréhension écrite, et plus encore.\nIdéal pour tous les niveaux, il vous aidera à identifier vos points forts et vos domaines à améliorer.\nPréparez-vous à un défi stimulant et améliorez votre maîtrise de l'anglais");
+
+        Category javascriptCategory = new Category();
+        javascriptCategory.setName("JavaScript");
+        javascriptCategory.setDescription("Mettez à l'épreuve vos compétences en JavaScript et Angular avec notre quiz interactif !\nCe test couvre les concepts essentiels et avancés, des bases de JavaScript aux fonctionnalités spécifiques d'Angular.\nParfait pour les développeurs souhaitant évaluer et renforcer leurs connaissances, ce quiz vous offre un défi stimulant et éducatif");
+
+        this.categoryRepository.save(webCategory);
+        this.categoryRepository.save(englishCategory);
+
     }
 }

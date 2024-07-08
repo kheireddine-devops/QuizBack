@@ -18,6 +18,7 @@ public class Category {
     @Id
     String id;
     String name;
+    String description;
     List<Question> quiz;
 
 }
