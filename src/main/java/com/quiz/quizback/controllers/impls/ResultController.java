@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 public class ResultController implements IResultController {
@@ -30,6 +32,11 @@ public class ResultController implements IResultController {
             return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
 
         }
+    }
+
+    @Override
+    public ResponseEntity<List<Result>> getAllResults() {
+        return new ResponseEntity<>(this.resultService.getAllResults(), HttpStatus.OK);
     }
 
     @Override

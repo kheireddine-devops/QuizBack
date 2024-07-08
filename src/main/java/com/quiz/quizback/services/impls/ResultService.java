@@ -11,6 +11,7 @@ import com.quiz.quizback.services.specs.IResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +46,10 @@ public class ResultService implements IResultService {
         }
         resultRepository.deleteById(resultId);
 
+    }
+
+    @Override
+    public List<Result> getAllResults() {
+        return resultRepository.findAll();
     }
 }

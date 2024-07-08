@@ -26,6 +26,9 @@ public class CategoryService implements ICategoryService {
         if(category.getName()!=null){
             categoryUpdate.setName(category.getName());
         }
+        if(category.getDescription()!=null){
+            categoryUpdate.setDescription(category.getDescription());
+        }
         if(category.getQuiz()!=null){
             categoryUpdate.setQuiz(category.getQuiz());
         }
