@@ -17,4 +17,5 @@ public class Result {
     String id;
     String userId;
     String categoryId;
+    byte totalScore;
 }
