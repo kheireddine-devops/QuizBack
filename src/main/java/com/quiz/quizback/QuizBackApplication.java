@@ -2,6 +2,10 @@ package com.quiz.quizback;
 
 import com.quiz.quizback.config.properities.QuizConfig;
 
+import com.quiz.quizback.domain.entities.Category;
+import com.quiz.quizback.domain.entities.User;
+import com.quiz.quizback.domain.enums.GenderEnum;
+import com.quiz.quizback.domain.enums.RoleEnum;
 import com.quiz.quizback.repositories.ICategoryRepository;
 import com.quiz.quizback.repositories.IUserRepository;
 

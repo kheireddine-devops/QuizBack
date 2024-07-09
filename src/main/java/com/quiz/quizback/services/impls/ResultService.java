@@ -20,9 +20,15 @@ public class ResultService implements IResultService {
     private final IResultRepository resultRepository;
     private final ICategoryRepository categoryRepository;
     private final IUserRepository userRepository;
+
     @Override
-    public boolean checkTestTaker(String resultId,String userId) {
-      return resultRepository.findByUserId(userId).isPresent();
+    public List<Result> getUserResults(String userId) {
+        return resultRepository.findByUserId(userId);
+    }
+
+    @Override
+    public boolean checkTestTaker(String userId,String categoryId) {
+      return resultRepository.findByUserIdAndCategoryId(userId,categoryId).isPresent();
     }
 
     @Override

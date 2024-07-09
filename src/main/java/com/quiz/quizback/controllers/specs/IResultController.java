@@ -6,15 +6,18 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
-@RequestMapping("/Result")
+@RequestMapping("/result")
 public interface IResultController {
-    @GetMapping("/{resultId}")
-    ResponseEntity<Boolean> checkTestTaker(@PathVariable("resultId") String resultId , @RequestBody String userId);
+    @GetMapping("/{categoryId}")
+    ResponseEntity<Boolean> checkTestTaker(@PathVariable("categoryId") String categoryId, Principal principal);
     @PostMapping("")
     ResponseEntity<Result> addResult(@RequestBody @Valid Result result);
-    @GetMapping("")
+    @GetMapping()
+    ResponseEntity<List<Result>> getCurrentUserResults(Principal principal);
+    @GetMapping("/all")
     ResponseEntity<List<Result>> getAllResults();
     @DeleteMapping("/{resultId}")
     ResponseEntity<Void> deleteResult(@PathVariable("resultId") String resultId);

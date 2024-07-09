@@ -6,8 +6,9 @@ import java.util.List;
 
 
 public interface IResultService {
-    boolean checkTestTaker( String resultId ,String userId);
+    boolean checkTestTaker(String userId, String categoryId);
     Result addResult(Result result);
     void deleteResult( String resultId);
     List<Result> getAllResults();
+    List<Result> getUserResults(String uid);
 }
